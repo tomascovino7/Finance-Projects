@@ -190,7 +190,7 @@ def main():
                 Cprice = cprices[-1]
                 Pprice = pprices [-1]
                 
-                #Calculate option payoffs for different stoc prices
+                #Calculate option payoffs for different stock prices
                 stock_prices = np.linspace(0.8*S, 1.2*S,100)
                 Longcall_payoffs = [max(S - K, 0) for S in stock_prices]
                 Longput_payoffs = [max(K - S, 0) for S in stock_prices]
@@ -231,26 +231,26 @@ def main():
                 print("Option Price:", round(converged_price, 0))
                 print("Day Count =", Days) 
             
-            print("Breakeven at:", round(breakeven_price, 2))
-            #American Put-Call parity proof:
-            
-            LeftSide = S - K*np.exp(-r*t)
-            RightSide = S*np.exp(-r*div) - K
-            MidSide = Cprice - Pprice
-            
-            if put_call_parity_input == "yes":
-                if round(LeftSide, 2) >= round(MidSide, 2) >= round(RightSide, 2):
-                    print("-------------------------------------------------------------------------")
-                    print("Call Price (C):", round(Cprice, 2))
-                    print("Put Price (P):", round(Pprice, 2))
-                    print("Put-Call parity proof:")
-                    print("S - K * e^(-r*t) ≥ C - P ≥ S - K")
-                    print(round(LeftSide, 2),"≥",round(Cprice,2),"-",round(Pprice,2),"≥",round(RightSide, 2))
-                    print(round(LeftSide, 2),"≥",round(MidSide, 2),"≥",round(RightSide, 2))
+                print("Breakeven at:", round(breakeven_price, 2))
+                #American Put-Call parity proof:
+                
+                LeftSide = S - K*np.exp(-r*t)
+                RightSide = S*np.exp(-r*div) - K
+                MidSide = Cprice - Pprice
+                
+                if put_call_parity_input == "yes":
+                    if round(LeftSide, 2) >= round(MidSide, 2) >= round(RightSide, 2):
+                        print("-------------------------------------------------------------------------")
+                        print("Call Price (C):", round(Cprice, 2))
+                        print("Put Price (P):", round(Pprice, 2))
+                        print("Put-Call parity proof:")
+                        print("S - K * e^(-r*t) ≥ C - P ≥ S - K")
+                        print(round(LeftSide, 2),"≥",round(Cprice,2),"-",round(Pprice,2),"≥",round(RightSide, 2))
+                        print(round(LeftSide, 2),"≥",round(MidSide, 2),"≥",round(RightSide, 2))
+                    else:
+                        print("There's no Put-Call parity, remember that for it to happen both instruments must have the same strike, maturity and underlying asset")
                 else:
-                    print("There's no Put-Call parity, remember that for it to happen both instruments must have the same strike, maturity and underlying asset")
-            else:
-                break
+                    break
                     
             break 
             
