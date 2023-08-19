@@ -117,17 +117,6 @@ def main():
                     option_payoffs = Shortput_payoffs
                     option_label = 'Short Put Payoff' 
                 
-                plt.plot(stock_prices, option_payoffs, label=option_label)
-                plt.axvline(K, color='red', linestyle='--', linewidth=0.8, label='Strike Price')
-                plt.axvline(breakeven_price, color='green', linestyle='--', linewidth=0.8, label='Breakeven Point')
-                plt.axhline(bs_price, color='black', linestyle='-', linewidth=0.8)
-                plt.xlabel('Stock Price')
-                plt.ylabel('Payoff')
-                plt.title('Option Payoff')
-                plt.legend()
-                plt.grid(True)
-                plt.show()
-
                 #European Put-Call parity proof:
                 Call_Parity = Cprice + K * np.exp(-r*t)
                 Put_Parity = Pprice + S * np.exp(-div*t)
@@ -148,6 +137,17 @@ def main():
                 else: 
                     break
                 
+                plt.plot(stock_prices, option_payoffs, label=option_label)
+                plt.axvline(K, color='red', linestyle='--', linewidth=0.8, label='Strike Price')
+                plt.axvline(breakeven_price, color='green', linestyle='--', linewidth=0.8, label='Breakeven Point')
+                plt.axhline(bs_price, color='black', linestyle='-', linewidth=0.8)
+                plt.xlabel('Stock Price')
+                plt.ylabel('Payoff')
+                plt.title('Option Payoff')
+                plt.legend()
+                plt.grid(True)
+                plt.show()
+                                
             else:
                 def create_american_option(K, option_type, T, settlement):
                     settlement = Today
@@ -216,21 +216,9 @@ def main():
                     breakeven_price = K - Pprice
                     option_payoffs = Shortput_payoffs
                     option_label = 'Short Put Payoff' 
-                    
-                plt.plot(stock_prices, option_payoffs, label=option_label)
-                plt.axvline(K, color='red', linestyle='--', linewidth=0.8, label='Strike Price')
-                plt.axvline(breakeven_price, color='green', linestyle='--', linewidth=0.8, label='Breakeven Point')
-                plt.axhline(converged_price, color='black', linestyle='-', linewidth=0.8)
-                plt.xlabel('Stock Price')
-                plt.ylabel('Payoff')
-                plt.title('Option Payoff')
-                plt.legend()
-                plt.grid(True)
-                plt.show()
-                                                    
-                print("Option Price:", round(converged_price, 0))
+                                                                        
+                print("Option Price:", round(converged_price, 2))
                 print("Day Count =", Days) 
-            
                 print("Breakeven at:", round(breakeven_price, 2))
                 #American Put-Call parity proof:
                 
@@ -251,6 +239,17 @@ def main():
                         print("There's no Put-Call parity, remember that for it to happen both instruments must have the same strike, maturity and underlying asset")
                 else:
                     break
+                    
+                plt.plot(stock_prices, option_payoffs, label=option_label)
+                plt.axvline(K, color='red', linestyle='--', linewidth=0.8, label='Strike Price')
+                plt.axvline(breakeven_price, color='green', linestyle='--', linewidth=0.8, label='Breakeven Point')
+                plt.axhline(converged_price, color='black', linestyle='-', linewidth=0.8)
+                plt.xlabel('Stock Price')
+                plt.ylabel('Payoff')
+                plt.title('Option Payoff')
+                plt.legend()
+                plt.grid(True)
+                plt.show()
                     
             break 
             
