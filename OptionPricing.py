@@ -1,10 +1,14 @@
 import QuantLib as ql
 import numpy as np
 import matplotlib.pyplot as plt
-import networkx as nx
 
 def get_float_input(prompt):
-    return float(input(prompt))
+    while True:
+        ans = input(prompt)
+        try:
+            return float(ans)
+        except ValueError:
+            print("Invalid input. Try again.")
 
 def get_date_input(prompt):
     date_string = input(prompt)
@@ -17,7 +21,6 @@ def create_european_option(K, option_type, T):
 
 def main():
     while True:
-        try:
             S = get_float_input("Enter the current stock price (S):")
             K = get_float_input("Enter the current strike price (K):")
             div = get_float_input("Enter the dividend yield (div):")
@@ -253,10 +256,6 @@ def main():
                     
             break 
             
-        except (ValueError, Exception) as e:
-            print("An error occurred:", e)
-            print("Please check your inputs and try again.\n")
-
 if __name__ == "__main__":
     main()
 
